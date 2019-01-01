@@ -1,0 +1,40 @@
+<div class="container">
+  <p id="notice"><%= notice %></p>
+
+  <h3 class="text-uppercase">List of added places</h3>
+    <ul class="list-group list-group-flush">
+    <% @places.each do |place| %>
+      <li class="list-group-item">
+        <p id="click_advance_<%= place.id %>">
+          <strong><%= place.name.split(",")[0] %></strong><br>
+          <%= "#{place.street_no} #{place.street}, #{place.city}" %>
+          <i class="fas fa-chevron-circle-down float-right"></i>
+        </p>
+        <div id="display_advance_<%= place.id %>" style="display: none;">
+          <table class="table">
+            <tbody>
+              <%if place.open_hour %>
+                <% place.open_hour[0].split(",").each do |days| %>
+                  <tr>
+                    <td><%= days.split(":")[0] %></td>
+                    <td><%= days.split(": ")[1] %></td>
+                  </tr>
+                <% end %>
+              <%end%>   
+            </tbody>
+          </table>
+        </div>
+      </li>
+    <% end %>
+    </ul>  
+</div>
+
+
+<script type="text/javascript">
+  <% @places.each do |place| %>
+    $('#click_advance_<%= place.id %>').click(function() {
+        $('#display_advance_<%= place.id %>').toggle('1000');
+        $("i", this).toggleClass("fas fa-chevron-circle-down fas fa-chevron-circle-up");
+    });
+  <% end %>
+</script>
