@@ -118,10 +118,8 @@ $('#click_advance').click(function() {
   $("i", this).toggleClass("fas fa-chevron-circle-down fas fa-chevron-circle-up");
 });
 
-
 $("form").on("keypress", function (e) {
   if (e.keyCode == 13) {
-
     var map = $('#pac-input').val();
     if (map != ""){
       $('#map').show();

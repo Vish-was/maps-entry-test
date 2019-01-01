@@ -1,35 +1,35 @@
-  <div class="container">
-    <div class="row mt-3 mb-3">
-      <div class="col-md-8 mx-auto">
-        <div class="col-12">
-          <h3 class="ml-2">Search For A Place</h3>
+<div class="container">
+  <div class="row mt-3 mb-3">
+    <div class="col-md-8 mx-auto">
+      <div class="col-12">
+        <h3 class="ml-2">Search For A Place</h3>
+      </div>
+      <%= form_for :place, url: :places, method: :post, html: { id: "placeForm"} do |f| %>
+        <%= f.hidden_field :city, id: "locality" %>
+        <%= f.hidden_field :street, id: "sublocality_level_1" %>
+        <%= f.hidden_field :street_no, id: "street_number" %>
+        <%= f.hidden_field :open_hour, id: "open_hours", multiple: true %>
+        <div class="input-group inner-addon right-addon">
+
+          <%= f.text_field :name, id: "pac-input", class: "form-control p-md-4 rounded-0", placeholder: "Search places here...", autofocus: true%>
         </div>
-        <%= form_for :place, url: :places, method: :post, html: { id: "placeForm"} do |f| %>
-          <%= f.hidden_field :city, id: "locality" %>
-          <%= f.hidden_field :street, id: "sublocality_level_1" %>
-          <%= f.hidden_field :street_no, id: "street_number" %>
-          <%= f.hidden_field :open_hour, id: "open_hours", multiple: true %>
-          <div class="input-group inner-addon right-addon">
-
-            <%= f.text_field :name, id: "pac-input", class: "form-control p-md-4 rounded-0", placeholder: "Search places here...", autofocus: true%>
-          </div>
-        <% end %>
-      </div>
+      <% end %>
     </div>
   </div>
+</div>
 
-  <div id="map" class="mb-3"></div>
+<div id="map" class="mb-3"></div>
 
-  <div class="container">
-    <div class="row no-gutters mb-2" id="buttons">
-      <div class="col-md col ml-md-5 mr-md-5">
-        <%= link_to "No, retry", root_path, class: "btn btn-outline-secondary btn-block rounded-0" %>
-      </div>
-      <div class="col-md col mr-md-5 ml-md-5 ml-1">
-        <button type="button" class="btn btn-outline-primary btn-block rounded-0" onclick="submitForm();">Yes</button>
-      </div>
+<div class="container">
+  <div class="row no-gutters mb-2" id="buttons">
+    <div class="col-md col ml-md-5 mr-md-5">
+      <%= link_to "No, retry", root_path, class: "btn btn-outline-secondary btn-block rounded-0" %>
+    </div>
+    <div class="col-md col mr-md-5 ml-md-5 ml-1">
+      <button type="button" class="btn btn-outline-primary btn-block rounded-0" onclick="submitForm();">Yes</button>
     </div>
   </div>
+</div>
 <script type="text/javascript" src="assets/custom.js" charset="utf-8"></script>
 <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDFoN8zVVlAbl2aKVw_uF8WS7fI5XWPr4M&libraries=places&callback=initAutocomplete"
          async defer></script>

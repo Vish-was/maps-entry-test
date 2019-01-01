@@ -37,8 +37,8 @@
 <script type="text/javascript">
   <% @places.each do |place| %>
     $('#click_advance_<%= place.id %>').click(function() {
-        $('#display_advance_<%= place.id %>').toggle('1000');
-        $("i", this).toggleClass("fas fa-chevron-circle-down fas fa-chevron-circle-up");
+      $('#display_advance_<%= place.id %>').toggle('1000');
+      $("i", this).toggleClass("fas fa-chevron-circle-down fas fa-chevron-circle-up");
     });
   <% end %>
 </script>
