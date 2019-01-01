@@ -92,7 +92,7 @@ function initAutocomplete() {
 }
 
 // Hide map on page load
-$( document ).ready(function() {
+$(document).ready(function() {
   var map = $('#pac-input').val();
   if (map == ""){
     $('#map').hide();
@@ -101,7 +101,7 @@ $( document ).ready(function() {
 });
 
 // Show map on search
-$( "#pac-input" ).on( "blur", function() {
+$("#pac-input").on( "blur", function() {
   var map = $('#pac-input').val();
   if (map != ""){
     $('#map').show();
@@ -121,6 +121,12 @@ $('#click_advance').click(function() {
 
 $("form").on("keypress", function (e) {
   if (e.keyCode == 13) {
+
+    var map = $('#pac-input').val();
+    if (map != ""){
+      $('#map').show();
+      $('#buttons').show();
+    }
     return false;
   }
 });
