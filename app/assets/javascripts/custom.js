@@ -40,7 +40,7 @@ function initAutocomplete() {
     try{
       var open_hours = place.opening_hours.weekday_text;
     } catch(e){
-      var open_hours = 0;
+      var open_hours = "";
     }
 
     $("#open_hours").val(open_hours);
