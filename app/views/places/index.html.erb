@@ -1,38 +1,45 @@
 <div class="container">
-  <p id="notice"><%= notice %></p>
+  <% if notice.present? %>
+    <div class="alert alert-danger alert-dismissible pt-3 pl-3 pb-0 mt-3">
+      <button type="button" class="close" data-dismiss="alert">&times;</button>
+      <p id="notice"><%= notice %></p>
+    </div>
+  <% end %>
 
-  <h3 class="text-uppercase">List of added places</h3>
-    <ul class="list-group list-group-flush">
+  <h3 class="text-uppercase d-xl-block d-sm-block d-md-block d-none mt-3">List of added places</h3>
+  <h5 class="text-uppercase d-xl-none d-sm-none d-md-none d-block mt-3">List of added places</h5>
+
+  <ul class="list-group list-group-flush">
     <% @places.each do |place| %>
       <li class="list-group-item">
         <p id="click_advance_<%= place.id %>">
-          <strong><%= place.name.split(",")[0] %></strong><br>
-          <%= "#{place.street_no} #{place.street}, #{place.city}" %>
+          <strong><%= place.name.split(',')[0] %></strong><br>
+          <% if place.street.present? || place.street_no.present? %>
+            <%= "#{place.street_no} #{place.street}, #{place.city}" %>
+          <% else %>
+            <%= "#{place.city}" %>
+          <% end %>
           <i class="fas fa-chevron-circle-down float-right"></i>
         </p>
-        <div id="display_advance_<%= place.id %>" style="display: none;">
-          <table class="table">
-            <tbody>
-              <%if place.open_hour %>
-                <% place.open_hour[0].split(",").each do |days| %>
+        <% if place.open_hour.present? %>
+          <div id="display_advance_<%= place.id %>" class="colapse_display">
+            <table class="table">
+              <tbody>
+                <% place.open_hour[0].split(',').each do |days| %>
                   <tr>
-                    <td><%= days.split(":")[0] %></td>
-                    <td><%= days.split(": ")[1] %></td>
+                    <td><%= days.split(':')[0] %></td>
+                    <td><%= days.split(': ')[1] %></td>
                   </tr>
                 <% end %>
-              <%end%>   
-            </tbody>
-          </table>
-          <%= link_to 'Delete', place_path(place), :method => :delete, 
-                                        :confirm => "Are you sure you want to delete?", 
-                                        :remote => true, 
-                                        class: 'btn btn-danger' %> 
-        </div>
+              </tbody>
+            </table>
+            <%= link_to 'Delete', place_path(place), method: :delete, remote: true, data: { confirm: 'Are you sure you want to delete?' }, class: 'btn btn-danger' %> 
+          </div>
+        <% end %>
       </li>
     <% end %>
-    </ul>  
+  </ul>  
 </div>
-
 
 <script type="text/javascript">
   <% @places.each do |place| %>

@@ -15,7 +15,6 @@ function initAutocomplete() {
   // Create the search box and link it to the UI element.
   var input = document.getElementById('pac-input');
   var searchBox = new google.maps.places.SearchBox(input);
-  // map.controls[google.maps.ControlPosition.TOP_LEFT].push(input);
 
   // Bias the SearchBox results towards current map's viewport.
   map.addListener('bounds_changed', function() {
@@ -45,7 +44,6 @@ function initAutocomplete() {
 
     $("#open_hours").val(open_hours);
     document.getElementById('open_hours').value = open_hours;
-    // $("#place_city").val(places[0].address_components[3].long_name)
 
     if (places.length == 0) {
       return;
@@ -109,15 +107,12 @@ $("#pac-input").on( "blur", function() {
   }
 });
 
+// submit form on button click
 function submitForm() {
  $('#placeForm').submit();
 }
 
-$('#click_advance').click(function() {
-  $('#display_advance').toggle('1000');
-  $("i", this).toggleClass("fas fa-chevron-circle-down fas fa-chevron-circle-up");
-});
-
+// prevent saving empty location
 $("form").on("keypress", function (e) {
   if (e.keyCode == 13) {
     var map = $('#pac-input').val();

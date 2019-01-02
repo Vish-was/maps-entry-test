@@ -1,12 +1,11 @@
 class PlacesController < ApplicationController
-
   def index
     @places = Place.all
   end
 
   def create
     place = Place.find_by_name(place_params[:name])
-    place = place.present? ? place : Place.new(place_params) 
+    place = place.present? ? place : Place.new(place_params)
     if place.save
       redirect_to places_path
     else
@@ -21,7 +20,8 @@ class PlacesController < ApplicationController
   end
 
   private
+
   def place_params
-    params.require(:place).permit!
+    params.require(:place).permit(:name, :city, :street, :street_no, open_hour: [])
   end
 end
